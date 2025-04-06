@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiveWell - AI Meal Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0fff0, #e0f7fa);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00695c;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 500;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .meal-plan {
+      background-color: #f1f8e9;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .meal-plan h3 {
+      color: #388e3c;
+    }
+
+    .open-btn {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .detect-btn {
+      padding: 12px 20px;
+      background-color: #388e3c;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .detect-btn:hover {
+      background-color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🥗 AI Meal Planner</h1>
+    <p style="text-align:center;">Plan your meals based on your daily calorie requirement.</p>
+
+    <label for="calorieSelect">Select Daily Calorie Goal:</label>
+    <select id="calorieSelect" onchange="generateMealPlan()">
+      <option value="1500">1500</option>
+      <option value="2000" selected>2000</option>
+      <option value="2500">2500</option>
+      <option value="3000">3000</option>
+      <option value="3500">3500</option>
+      <option value="4000">4000</option>
+    </select>
+
+    <div class="meal-plan" id="mealPlan">
+      <!-- Meal plan will be injected here -->
+    </div>
+
+    <div class="open-btn">
+      <a href="http://localhost:8503" target="_blank">
+        <button class="detect-btn">Open AI Meal Planner App</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const meals = {
+      1500: {
+        "Breakfast": "Oatmeal with banana and almond butter",
+        "Lunch": "Grilled chicken salad with olive oil vinaigrette",
+        "Dinner": "Baked salmon, brown rice, and steamed broccoli",
+        "Snacks": "Greek yogurt with honey"
+      },
+      2000: {
+        "Breakfast": "Avocado toast and boiled eggs",
+        "Lunch": "Turkey sandwich on whole wheat bread, side salad",
+        "Dinner": "Stir-fried tofu and veggies with quinoa",
+        "Snacks": "Protein shake and an apple"
+      },
+      2500: {
+        "Breakfast": "Protein pancakes with berries and peanut butter",
+        "Lunch": "Grilled chicken burrito bowl with beans and rice",
+        "Dinner": "Beef stir-fry with veggies and noodles",
+        "Snacks": "Mixed nuts and banana"
+      },
+      3000: {
+        "Breakfast": "Smoothie bowl with granola, nuts, and fruit",
+        "Lunch": "Chicken pasta with pesto and veggies",
+        "Dinner": "Grilled steak, mashed potatoes, and asparagus",
+        "Snacks": "Cottage cheese, trail mix"
+      },
+      3500: {
+        "Breakfast": "Omelette with cheese, spinach, and whole wheat toast",
+        "Lunch": "Double chicken wrap with hummus and veggies",
+        "Dinner": "Salmon, sweet potato fries, and sautéed spinach",
+        "Snacks": "Protein bar and dried fruits"
+      },
+      4000: {
+        "Breakfast": "Full English breakfast with fruit smoothie",
+        "Lunch": "Double beef burger with whole grain bun, salad and avocado",
+        "Dinner": "High-calorie pasta with meatballs and side of garlic bread",
+        "Snacks": "Nut butter sandwich, granola bars, trail mix"
+      }
+    };
+
+    function generateMealPlan() {
+      const calories = document.getElementById('calorieSelect').value;
+      const plan = meals[calories];
+      const container = document.getElementById('mealPlan');
+      let content = `<h3>📋 Meal Plan for ${calories} Calories</h3><ul>`;
+      for (const [meal, desc] of Object.entries(plan)) {
+        content += `<li><strong>${meal}:</strong> ${desc}</li>`;
+      }
+      content += '</ul><p style="margin-top:10px;"><em>📌 This is a general plan. For medical conditions or allergies, consult a nutritionist.</em></p>';
+      container.innerHTML = content;
+    }
+
+    // Load default plan
+    window.onload = generateMealPlan;
+  </script>
+</body>
+</html>

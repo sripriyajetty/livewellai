@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiveWell Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background: #2b51e0;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-around;
+      background: #333;
+    }
+    .nav a {
+      color: white;
+      padding: 1rem;
+      text-decoration: none;
+    }
+    .nav a:hover {
+      background: #575757;
+    }
+    .main {
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Welcome to LiveWell Dashboard</h1>
+    <p>Your one-stop health and wellness assistant</p>
+  </div>
+
+  <div class="nav">
+    <a href="diseasedetection.html" target="_blank">🧠 Disease Detection</a>
+    <a href="fitnesscoach.html" target="_blank">💪 Fitness Coach</a>
+    <a href="mealplanner.html" target="_blank">🥗 Meal Planner</a>
+  </div>
+
+  <div class="main">
+    <div class="card">
+      <h2>Disease Detection Summary</h2>
+      <p>No symptoms checked yet. Visit the chatbot to get started!</p>
+    </div>
+
+    <div class="card">
+      <h2>Fitness Coach Summary</h2>
+      <p>Workout progress and weight trends will appear here.</p>
+    </div>
+
+    <div class="card">
+      <h2>Meal Planner Summary</h2>
+      <p>Based on your 2000 calorie plan: Avocado toast, turkey sandwich, tofu stir-fry.</p>
+    </div>
+  </div>
+</body>
+</html>
